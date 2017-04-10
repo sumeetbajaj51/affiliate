@@ -1,0 +1,97 @@
+CREATE DATABASE `affiliate_test` ;
+
+use `affiliate_test`;
+
+CREATE TABLE `affiliate` (
+`id` INT UNSIGNED NOT NULL ,
+`name` VARCHAR( 100 ) NOT NULL ,
+`surname` VARCHAR( 100 ) NOT NULL ,
+`current_amount` DOUBLE NOT NULL ,
+`total_amount` DOUBLE NOT NULL ,
+PRIMARY KEY ( `id` ) 
+);
+
+
+CREATE TABLE `sold_item` (
+`id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+`aff_id` INT NOT NULL ,
+`sold_amount` DOUBLE NOT NULL ,
+`aff_amount` DOUBLE NOT NULL ,
+`sold_date` VARCHAR( 50 ) NOT NULL ,
+`smonth` INT NOT NULL ,
+`syear` INT NOT NULL ,
+PRIMARY KEY ( `id` ) 
+);
+
+
+CREATE TABLE `inc_amount` (
+`id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+`start_amount` INT NOT NULL ,
+`end_amount` INT NOT NULL ,
+`percentage` INT NOT NULL ,
+PRIMARY KEY ( `id` ) 
+);
+
+CREATE TABLE `aff_payment` (
+`id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+`aff_id` INT NOT NULL ,
+`payment_date` VARCHAR( 50 ) NOT NULL ,
+`payment_amount` DOUBLE NOT NULL ,
+`smonth` INT NOT NULL ,
+`syear` INT NOT NULL ,
+PRIMARY KEY ( `id` ) 
+);
+
+CREATE TABLE `app_seq` (
+`last_num` INT NOT NULL 
+);
+
+INSERT INTO `app_seq` ( `last_num` ) 
+VALUES (
+'1000'
+);
+
+INSERT INTO `inc_amount` ( `id` , `start_amount` , `end_amount` , `percentage` ) 
+VALUES ('', '1', '1000', '3');
+
+INSERT INTO `inc_amount` ( `id` , `start_amount` , `end_amount` , `percentage` ) 
+VALUES ('', '1001', '2000', '4');
+
+INSERT INTO `inc_amount` ( `id` , `start_amount` , `end_amount` , `percentage` ) 
+VALUES ('', '2001', '3000', '5');
+
+INSERT INTO `inc_amount` ( `id` , `start_amount` , `end_amount` , `percentage` ) 
+VALUES ('', '3001', '4000', '6');
+
+INSERT INTO `inc_amount` ( `id` , `start_amount` , `end_amount` , `percentage` ) 
+VALUES ('', '4001', '5000', '7');
+ALTER TABLE `affiliate` ADD `address` VARCHAR( 250 ) NOT NULL ,
+ADD `city` VARCHAR( 100 ) NOT NULL ,
+ADD `postal_code` VARCHAR( 20 ) NOT NULL ,
+ADD `country` VARCHAR( 100 ) NOT NULL ,
+ADD `company_name` VARCHAR( 150 ) ,
+ADD `email` VARCHAR( 150 ) NOT NULL ,
+ADD `phone_number` VARCHAR( 30 ) NOT NULL ,
+ADD `web_site` VARCHAR( 100 ) ,
+ADD `recieve_special_offer` VARCHAR( 5 ) ,
+ADD `how_did_you_hear` VARCHAR( 100 ) ,
+ADD `accept_terms` VARCHAR( 5 ) NOT NULL ;
+
+
+
+CREATE TABLE `terms_of_service` (
+`terms` TEXT NOT NULL 
+);
+
+
+
+CREATE TABLE `options_list` (
+`options` VARCHAR( 150 ) NOT NULL 
+);
+
+INSERT INTO `options_list` ( `options` ) 
+VALUES ('Test'), ('Test 2');
+
+
+INSERT INTO `terms_of_service` ( `terms` ) 
+VALUES ('Test terms of service text, this text supports html tags. <b>This is a bold text</b>');
